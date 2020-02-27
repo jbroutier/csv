@@ -1,0 +1,23 @@
+{
+    "type": "library",
+    "name": "jbroutier/csv",
+    "description": "A simple and memory efficient CSV import/export library for PHP >= 7.1",
+    "version": "1.0.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jérémie BROUTIER",
+            "email": "jeremie.broutier@gmail.com",
+            "role": "developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "ext-mbstring": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "JBroutier\\Csv\\": "src/"
+        }
+    }
+}
