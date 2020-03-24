@@ -106,7 +106,7 @@ class Writer
     public function write(iterable $iterator, callable $callback): void
     {
         if (is_array($this->header)) {
-            $header = array_map([$this, 'convertEncoding'], $this->header);
+            $header = array_map([$this, 'convertEncoding'], array_map('strval', $this->header));
 
             if (false === fputcsv($this->handle, $header, $this->delimiter, $this->enclosure, $this->escape)) {
                 throw new IOException(sprintf('Unable to write to file "%s".', $this->filename));
@@ -124,10 +124,10 @@ class Writer
                 throw new LogicException('Callback must return an array or false.');
             }
 
-            $row = array_map([$this, 'convertEncoding'], $row);
+            $row = array_map([$this, 'convertEncoding'], array_map('strval', $row));
 
             if (is_array($this->header)) {
-                $header = array_map([$this, 'convertEncoding'], $this->header);
+                $header = array_map([$this, 'convertEncoding'], array_map('strval', $this->header));
 
                 if (false === ($row = array_combine($header, $row))) {
                     throw new SyntaxErrorException(sprintf('%s columns were expected but %s were found on line %s.',
